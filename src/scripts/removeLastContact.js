@@ -1,17 +1,23 @@
-import { createFakeContact } from '../utils/createFakeContact.js';
-import { writeContacts } from '../utils/writeContacts.js';
 import { readContacts } from '../utils/readContacts.js';
+import { writeContacts } from '../utils/writeContacts.js';
 
-const generateContacts = async (number) => {
+const removeLastContact = async () => {
   try {
     const contacts = await readContacts();
-    for (let i = 0; i < number; i++) {
-      contacts.push(createFakeContact());
+
+    if (contacts.length === 0) {
+      console.log('No contacts to remove.');
+      return;
     }
-    writeContacts(contacts);
+
+    const removedContact = contacts.pop();
+
+    await writeContacts(contacts);
+
+    console.log(`Removed contact: ${removedContact.name}`);
   } catch (error) {
-    console.error('Some error: ', error);
+    console.error('Error removing contact:', error);
   }
 };
 
-generateContacts(5);
+removeLastContact();
