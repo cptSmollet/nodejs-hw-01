@@ -13,7 +13,7 @@
     "remove-all": "node src/scripts/removeAllContacts.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Volodka",
   "license": "ISC",
   "devDependencies": {
     "@eslint/js": "^9.11.1",
